@@ -6,14 +6,18 @@ import numpy as np
 
 app = Flask(__name__)
 
-# DB connection
+import os
+
+from dotenv import load_dotenv
+load_dotenv()
+
 def get_db_connection():
     return pyodbc.connect(
-        'DRIVER={ODBC Driver 17 for SQL Server};'
-        'SERVER=localhost;'
-        'DATABASE=DB_Project;'
-        'UID=DBProject;'
-        'PWD=Zamam12345;'
+        f"DRIVER={{ODBC Driver 17 for SQL Server}};"
+        f"SERVER={os.environ.get('DB_SERVER')};"
+        f"DATABASE={os.environ.get('DB_NAME')};"
+        f"UID={os.environ.get('DB_USERNAME')};"
+        f"PWD={os.environ.get('DB_PASSWORD')};"
     )
 
 # Fetch all movies with their genres
