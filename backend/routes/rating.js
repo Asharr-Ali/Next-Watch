@@ -3,7 +3,6 @@ const router = express.Router();
 const {
   addRating,
   getRatingsByUser,
-  getRatingsByMovie,
   updateRating
 } = require('../controllers/ratingController');
 
@@ -15,8 +14,5 @@ router.get('/user/:userId', getRatingsByUser);
 
 //Update Rating of User
 router.post('/update-rating', updateRating);
-
-// Get all ratings for a movie
-router.get('/movie/:movieId', getRatingsByMovie);
 
 module.exports = router;

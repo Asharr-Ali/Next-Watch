@@ -1,15 +1,14 @@
-const sql = require('mssql/msnodesqlv8'); //  Use correct driver
+const sql = require('mssql');
 
-// Database Configuration
 const config = {
-  server: 'ANEEZAPC',
-  database: 'dbp',
-  driver: 'msnodesqlv8',
+  server: "localhost", // or check your actual server name
+  database: "DB_Project", // Correct database name
+  user: "DBProject", // Make sure SQL Authentication is enabled
+  password: "Zamam12345", // Your password
+  port: 1433, // Default SQL Server port
   options: {
-    trustedConnection: true,        // Needed for Windows Auth
-    encrypt: false,
+    encrypt: false, // Disable encryption if using a local server
     trustServerCertificate: true,
-    enableArithAbort: true
   }
 };
 
@@ -17,7 +16,7 @@ const connectToDB = async () => {
   try {
     return await sql.connect(config);
   } catch (err) {
-    console.error(' SQL CONNECTION ERROR:', err);
+    console.error('❌ SQL CONNECTION ERROR:', err);
     throw err;
   }
 };
